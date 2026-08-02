@@ -1,0 +1,43 @@
+# DispatchHealth
+
+> DispatchHealth delivers complex medical care in the home — same-day urgent care, hospital-alternative (hospital-at-home) care, and transitional/recovery care — across roughly 50 US metropolitan areas in partnership with nearly 40 health systems and national payers. Founded in 2013 in Denver, Colorado, it merged with Medically Home in June 2025. Its CESIA platform handles care planning, dispatching, routing, scheduling and real-time patient connectivity, and integrates with a partner health system's existing EMR. DispatchHealth publishes no public developer portal, API documentation, or OpenAPI contract; the only machine-readable surface found on its hosts is an OAuth-protected MCP server exposed by its WordPress marketing site.
+
+## Company
+- [Website](https://www.dispatchhealth.com/): Company home
+- [About](https://www.dispatchhealth.com/about-us/): Leadership and company overview
+- [Technology](https://www.dispatchhealth.com/technology/): The CESIA care-delivery platform
+- [Capabilities](https://www.dispatchhealth.com/capabilities/): Care programs delivered in the home
+- [Partners](https://www.dispatchhealth.com/partners/): Health system and payer partnership model
+- [Locations](https://www.dispatchhealth.com/locations/): Markets served
+- [Press Room](https://www.dispatchhealth.com/press-room/): News and announcements
+- [Blog](https://www.dispatchhealth.com/blog/): Articles
+- [Careers](https://careers.dispatchhealth.com/): Open roles
+
+## Access points
+- [Request care](https://request.dispatchhealth.com/): Patient-facing online request flow
+- [Dispatch Express](https://express.dispatchhealth.com/): Partner/provider login for requesting care
+- [Patient portal](https://www.dispatchhealth.com/patientportal/): Billing and account
+- [Get in touch](https://www.dispatchhealth.com/get-in-touch/): Support and contact
+- [Cost and insurance coverage](https://www.dispatchhealth.com/cost-insurance-coverage/): Pricing and coverage
+
+## Machine-readable surface
+- [OAuth authorization server metadata](https://www.dispatchhealth.com/.well-known/oauth-authorization-server): RFC 8414 — authorization_code + refresh_token, PKCE S256, scope `mcp`
+- [OAuth protected resource metadata](https://www.dispatchhealth.com/.well-known/oauth-protected-resource): RFC 9728 — protects the MCP endpoint
+- [MCP server](https://www.dispatchhealth.com/wp-json/mcp/mcp-oauth-server): JSON-RPC MCP endpoint; `tools/list` returns 401 without an OAuth bearer
+- [MCP route index](https://www.dispatchhealth.com/wp-json/mcp): Lists both MCP servers on the site
+- No OpenAPI, Swagger, GraphQL, AsyncAPI, or A2A agent card is published on any DispatchHealth host.
+- `api.dispatchhealth.com` answers HTTP 204 with an empty body to every anonymous path.
+
+## Legal and trust
+- [Terms of service](https://www.dispatchhealth.com/terms-of-service/)
+- [Privacy policy](https://www.dispatchhealth.com/privacy-policy/)
+- [Consumer privacy notice](https://www.dispatchhealth.com/consumer-privacy-notice/): HIPAA and Notice of Privacy Practices
+- [Trust center](https://trust.dispatchhealth.com/): Drata-hosted (bot-challenged, certifications not readable)
+
+## Code
+- [GitHub organization](https://github.com/DispatchHealth): 21 public repositories, all forks — no first-party open source or SDKs
+
+---
+generated: 2026-07-31
+method: generated
+source: apis.yml + repo artifacts (no /llms.txt is published — https://www.dispatchhealth.com/llms.txt returns 404)

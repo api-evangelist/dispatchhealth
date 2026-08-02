@@ -1,0 +1,57 @@
+generated: '2026-07-31'
+method: probed
+source: live GET of /.well-known/* on every DispatchHealth host
+hosts_probed:
+- https://www.dispatchhealth.com
+- https://api.dispatchhealth.com
+- https://express.dispatchhealth.com
+- https://request.dispatchhealth.com
+- https://portal.dispatchhealth.com
+host: https://www.dispatchhealth.com
+documents:
+- path: /.well-known/oauth-authorization-server
+  spec: RFC 8414 OAuth 2.0 Authorization Server Metadata
+  status: 200
+  content_type: application/json
+  file: dispatchhealth-oauth-authorization-server.json
+- path: /.well-known/oauth-protected-resource
+  spec: RFC 9728 OAuth 2.0 Protected Resource Metadata
+  status: 200
+  content_type: application/json
+  file: dispatchhealth-oauth-protected-resource.json
+- path: /.well-known/security.txt
+  spec: RFC 9116
+  status: 404
+- path: /.well-known/openid-configuration
+  status: 404
+- path: /.well-known/api-catalog
+  spec: RFC 9727
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
+- path: /.well-known/agent-card.json
+  spec: A2A 1.0.0
+  status: 404
+- path: /.well-known/agent.json
+  spec: A2A pre-0.3 legacy
+  status: 404
+- path: /llms.txt
+  status: 404
+other_hosts:
+- host: https://api.dispatchhealth.com
+  result: every path probed (/.well-known/*, /openapi.json, /swagger.json, /graphql,
+    /docs, /api-docs, /redoc, /health, /v1) returns HTTP 204 with an empty body —
+    an ingress edge with no anonymous surface
+- host: https://express.dispatchhealth.com
+  result: every /.well-known/* path returns HTTP 400 with {"error":"not found","status":404}
+- host: https://request.dispatchhealth.com
+  result: SPA catch-all — HTTP 200 with an HTML shell for every /.well-known/* path;
+    treated as a MISS, not a hit
+- host: https://portal.dispatchhealth.com
+  result: SPA catch-all — HTTP 200 with an HTML shell for every /.well-known/* path;
+    treated as a MISS, not a hit
+notes: 'The two 200s are real, machine-readable OAuth 2.1 discovery documents served
+  by the WordPress MCP adapter running on the marketing site. They advertise the protected
+  resource https://www.dispatchhealth.com/wp-json/mcp/mcp-oauth-server with the single
+  scope `mcp`. No security.txt, no OIDC discovery, no API catalog, and no A2A agent
+  card were found on any host.'

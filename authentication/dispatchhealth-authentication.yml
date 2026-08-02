@@ -1,0 +1,44 @@
+generated: '2026-07-31'
+method: probed
+source: https://www.dispatchhealth.com/.well-known/oauth-authorization-server
+docs: null
+summary:
+  types: [oauth2, http]
+  api_key_in: []
+  oauth2_flows: [authorizationCode]
+  pkce: [S256]
+  public_clients: true
+schemes:
+- name: MCPOAuth2
+  type: oauth2
+  sources:
+  - well-known/dispatchhealth-oauth-authorization-server.json
+  - well-known/dispatchhealth-oauth-protected-resource.json
+  issuer: https://www.dispatchhealth.com
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://www.dispatchhealth.com/oauth/authorize
+    tokenUrl: https://www.dispatchhealth.com/oauth/token
+    revocationUrl: https://www.dispatchhealth.com/oauth/revoke
+    refreshSupported: true
+    scopes:
+      mcp: Access the DispatchHealth WordPress MCP server
+  code_challenge_methods: [S256]
+  token_endpoint_auth_methods: [none]
+  client_id_metadata_document_supported: true
+  protects:
+  - https://www.dispatchhealth.com/wp-json/mcp/mcp-oauth-server
+  bearer_methods_supported: [header]
+  standards: [RFC 6749, RFC 8414, RFC 9728, RFC 7636]
+- name: WordPressApplicationPasswords
+  type: http
+  scheme: basic
+  sources:
+  - https://www.dispatchhealth.com/wp-json/
+  authorization_page: https://www.dispatchhealth.com/wp-admin/authorize-application.php
+  note: advertised in the WordPress REST API index `authentication` block; covers the
+    wp/v2 and mcp-adapter-default-server routes
+notes: 'Only the marketing-site surface has a discoverable authentication contract.
+  The partner portal (express.dispatchhealth.com) and patient request flow (request.dispatchhealth.com)
+  are interactive logins with no published machine-readable auth metadata, and api.dispatchhealth.com
+  answers 204 to every anonymous request.'

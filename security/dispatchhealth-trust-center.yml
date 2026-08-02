@@ -1,0 +1,31 @@
+generated: '2026-07-31'
+method: probed
+probe: true
+url: https://trust.dispatchhealth.com/
+provider: Drata
+certifications: []
+verified: dns-delegation
+evidence:
+- source: dig CNAME trust.dispatchhealth.com
+  observed: trust.cname.drata.com.
+  kind: dns-delegation-to-trust-center-host
+  note: the provider has delegated trust.dispatchhealth.com to Drata's hosted trust-center
+    service, which is direct evidence of a published trust center
+- source: https://trust.dispatchhealth.com/
+  http_status: 403
+  content_type: text/html; charset=UTF-8
+  kind: http-probe
+  note: 'Cloudflare interstitial ("Just a moment...") returned to both curl and the
+    fetch tool; the page body could not be read, so the certifications listed on the
+    trust center could NOT be enumerated in this pass. certifications[] is deliberately
+    empty rather than guessed.'
+x-evidence:
+  fetched: '2026-07-31'
+  url: https://trust.dispatchhealth.com/
+  http_status: 403
+  content_type: text/html; charset=UTF-8
+  dns_cname: trust.cname.drata.com.
+notes: 'No Compliance pointer was emitted: the trust center exists but no named certification
+  (SOC 2 / ISO 27001 / HITRUST / HIPAA attestation) could be verified from a first-party
+  source in this pass. Re-run when the page is readable to enumerate certifications
+  and upgrade to method: searched.'

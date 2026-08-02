@@ -1,0 +1,21 @@
+generated: '2026-07-31'
+method: probed
+source: https://www.dispatchhealth.com/.well-known/oauth-authorization-server
+docs: null
+schemes:
+- name: MCPOAuth2
+  source: well-known/dispatchhealth-oauth-authorization-server.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://www.dispatchhealth.com/oauth/authorize
+    tokenUrl: https://www.dispatchhealth.com/oauth/token
+scopes:
+- scope: mcp
+  description: Access the MCP server at https://www.dispatchhealth.com/wp-json/mcp/mcp-oauth-server
+  flows: [authorizationCode]
+  sources:
+  - well-known/dispatchhealth-oauth-authorization-server.json
+  - well-known/dispatchhealth-oauth-protected-resource.json
+notes: A single coarse scope is advertised by both the RFC 8414 authorization-server
+  metadata and the RFC 9728 protected-resource metadata. No scope/permission reference
+  page is published, and no finer-grained scopes were observed.

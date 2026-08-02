@@ -1,23 +1,125 @@
 aid: dispatchhealth
 name: DispatchHealth
-description: 'DispatchHealth is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'DispatchHealth is a Denver, Colorado-based provider of complex medical
+  care in the home, founded in 2013 and merged with Medically Home in June 2025 to
+  create one of the largest hospital-at-home platforms in the United States. The combined
+  company delivers same-day urgent care, hospital-alternative (hospital-at-home) care,
+  transitional and recovery care across roughly 50 metropolitan areas in partnership
+  with nearly 40 health systems and national payers. Its CESIA technology platform
+  handles rules-based and AI-assisted care planning, dispatching, routing, scheduling,
+  care-team status, real-time two-way patient communications and field equipment tracking,
+  and is designed to integrate with a partner health system''s existing EMR rather
+  than replace it. DispatchHealth partners access the platform through the Dispatch
+  Express portal and patients through an online request flow; the company publishes
+  no public developer portal, API documentation, or machine-readable API contract as
+  of this profiling pass.'
 url: https://raw.githubusercontent.com/api-evangelist/dispatchhealth/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
 x-tier: stub
 x-tier-reason: harvest
+image: https://www.dispatchhealth.com/wp-content/uploads/2025/07/dispatchhealth-logo.svg
 specificationVersion: '0.20'
 created: '2026-07-31'
 modified: '2026-07-31'
+x-enrichment:
+  date: '2026-07-31'
+  status: enriched
+  artifacts_added: 11
+  pass: local-v1
 tags:
 - Company
-apis: []
+- Healthcare
+- Health Systems
+- Hospital at Home
+- Home Health
+- Urgent Care
+- Care Delivery
+- Medical Services
+- Telehealth
+- Digital Health
+apis:
+- name: DispatchHealth MCP Server
+  description: 'An OAuth 2.1-protected Model Context Protocol (MCP) server exposed
+    on DispatchHealth''s own host by the WordPress MCP adapter running on www.dispatchhealth.com.
+    Discovery is fully machine-readable: RFC 8414 authorization-server metadata and
+    RFC 9728 protected-resource metadata are both served anonymously, the endpoint
+    returns a conformant WWW-Authenticate Bearer challenge, and a single coarse `mcp`
+    scope is advertised. The tool list is auth-gated — an anonymous tools/list returns
+    401 — so no tool manifest is asserted. This surface fronts the marketing site''s
+    content and WordPress abilities; DispatchHealth''s clinical/partner platform (CESIA,
+    Dispatch Express) publishes no public API.'
+  humanURL: https://www.dispatchhealth.com/
+  baseURL: https://www.dispatchhealth.com/wp-json/mcp/mcp-oauth-server
+  tags:
+  - MCP
+  - Agents
+  - OAuth
+  - Healthcare
+  properties:
+  - type: MCPServer
+    url: mcp/dispatchhealth-mcp.yml
+  - type: Authentication
+    url: authentication/dispatchhealth-authentication.yml
+  - type: OAuthScopes
+    url: scopes/dispatchhealth-scopes.yml
+  - type: WellKnown
+    url: well-known/dispatchhealth-well-known.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/dispatchhealth-domain-security.yml
+- type: MCPServer
+  url: mcp/dispatchhealth-mcp.yml
+- type: WellKnown
+  url: well-known/dispatchhealth-well-known.yml
+- type: Authentication
+  url: authentication/dispatchhealth-authentication.yml
+- type: OAuthScopes
+  url: scopes/dispatchhealth-scopes.yml
+- type: Conformance
+  url: conformance/dispatchhealth-conformance.yml
+- type: TrustCenter
+  url: security/dispatchhealth-trust-center.yml
+- type: Compliance
+  url: https://trust.dispatchhealth.com/
+- type: LLMsTxt
+  url: llms/dispatchhealth-llms.txt
 - type: Website
+  url: https://www.dispatchhealth.com/
+- type: SecondaryMarket
   url: https://forgeglobal.com/dispatchhealth_stock/
+- type: About
+  url: https://www.dispatchhealth.com/about-us/
+- type: Blog
+  url: https://www.dispatchhealth.com/blog/
+- type: Press
+  url: https://www.dispatchhealth.com/press-room/
+- type: Support
+  url: https://www.dispatchhealth.com/get-in-touch/
+- type: FAQ
+  url: https://www.dispatchhealth.com/faq/
+- type: Pricing
+  url: https://www.dispatchhealth.com/cost-insurance-coverage/
+- type: SignUp
+  url: https://request.dispatchhealth.com/
+- type: Login
+  url: https://express.dispatchhealth.com/
+- type: TermsOfService
+  url: https://www.dispatchhealth.com/terms-of-service/
+- type: PrivacyPolicy
+  url: https://www.dispatchhealth.com/privacy-policy/
+- type: GitHubOrganization
+  url: https://github.com/DispatchHealth
+- type: Partners
+  url: https://www.dispatchhealth.com/partners/
+- type: Technology
+  url: https://www.dispatchhealth.com/technology/
+- type: Careers
+  url: https://www.dispatchhealth.com/careers/
+- type: Locations
+  url: https://www.dispatchhealth.com/locations/

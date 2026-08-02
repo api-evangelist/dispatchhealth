@@ -1,0 +1,58 @@
+generated: '2026-07-31'
+method: probed
+source: live probes of dispatchhealth.com + first-party published notices
+standards:
+- id: oauth2
+  conforms: true
+  evidence: 'RFC 6749 authorization_code + refresh_token grants advertised at https://www.dispatchhealth.com/.well-known/oauth-authorization-server'
+- id: rfc8414-authorization-server-metadata
+  conforms: true
+  evidence: 'HTTP 200 JSON metadata document at /.well-known/oauth-authorization-server'
+- id: rfc9728-protected-resource-metadata
+  conforms: true
+  evidence: 'HTTP 200 JSON document at /.well-known/oauth-protected-resource; the MCP
+    endpoint returns WWW-Authenticate: Bearer with resource_metadata pointing at it'
+- id: rfc7636-pkce
+  conforms: true
+  evidence: 'code_challenge_methods_supported: [S256]'
+- id: mcp
+  conforms: true
+  evidence: 'two JSON-RPC MCP servers under https://www.dispatchhealth.com/wp-json/mcp/
+    (auth-gated; tools/list returns 401)'
+- id: oidc
+  conforms: false
+  evidence: '/.well-known/openid-configuration returns 404 on every host'
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: '/.well-known/security.txt returns 404 on every host'
+- id: rfc9727-api-catalog
+  conforms: false
+  evidence: '/.well-known/api-catalog returns 404'
+- id: a2a
+  conforms: false
+  evidence: 'no agent card at /.well-known/agent-card.json or /.well-known/agent.json
+    on any host'
+- id: openapi
+  conforms: false
+  evidence: 'no OpenAPI/Swagger document found on the docs host, the marketing host,
+    or api.dispatchhealth.com (which answers 204 to every path)'
+- id: fhir
+  conforms: false
+  evidence: 'no FHIR endpoint, capability statement, or FHIR claim published; DispatchHealth
+    integrates into partner EMRs rather than exposing its own clinical API'
+- id: hipaa
+  conforms: true
+  regulatory: true
+  evidence: 'first-party consumer privacy notice cites the Health Insurance Portability
+    and Accountability Act of 1996 and its implementing regulations and links a Notice
+    of Privacy Practices'
+  url: https://www.dispatchhealth.com/consumer-privacy-notice/
+- id: dnssec
+  conforms: true
+  evidence: 'DNSKEY present for dispatchhealth.com (see security/dispatchhealth-domain-security.yml)'
+compliance_program:
+  trust_center: https://trust.dispatchhealth.com/
+  provider: Drata
+  certifications_verified: []
+  note: the trust center is delegated to Drata but is behind a Cloudflare bot challenge,
+    so its named certifications could not be read in this pass
