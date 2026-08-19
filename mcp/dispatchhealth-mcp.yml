@@ -11,7 +11,10 @@ servers:
 - name: mcp-oauth-server
   transport: http
   url: https://www.dispatchhealth.com/wp-json/mcp/mcp-oauth-server
-  methods: [POST, GET, DELETE]
+  methods:
+  - POST
+  - GET
+  - DELETE
   auth: oauth2
   auth_gated: true
   probe:
@@ -22,7 +25,10 @@ servers:
 - name: mcp-adapter-default-server
   transport: http
   url: https://www.dispatchhealth.com/wp-json/mcp/mcp-adapter-default-server
-  methods: [POST, GET, DELETE]
+  methods:
+  - POST
+  - GET
+  - DELETE
   auth: wordpress-session-or-application-password
   auth_gated: true
   probe:
@@ -34,31 +40,48 @@ oauth:
   authorization_endpoint: https://www.dispatchhealth.com/oauth/authorize
   token_endpoint: https://www.dispatchhealth.com/oauth/token
   revocation_endpoint: https://www.dispatchhealth.com/oauth/revoke
-  grant_types: [authorization_code, refresh_token]
-  code_challenge_methods: [S256]
-  token_endpoint_auth_methods: [none]
+  grant_types:
+  - authorization_code
+  - refresh_token
+  code_challenge_methods:
+  - S256
+  token_endpoint_auth_methods:
+  - none
   client_id_metadata_document_supported: true
-  scopes: [mcp]
+  scopes:
+  - mcp
 tools: []
-tools_note: 'tools/list returns 401 on both servers, so the live tool set and its inputSchemas
-  could NOT be enumerated anonymously. No tool list is asserted here — the WordPress
-  Abilities API that backs these tools (/wp-json/wp-abilities/v1/abilities) is also
-  401 (rest_forbidden). Re-run with an authenticated OAuth bearer to capture the real
-  manifest.'
+tools_note: tools/list returns 401 on both servers, so the live tool set and its inputSchemas could NOT
+  be enumerated anonymously. No tool list is asserted here — the WordPress Abilities API that backs these
+  tools (/wp-json/wp-abilities/v1/abilities) is also 401 (rest_forbidden). Re-run with an authenticated
+  OAuth bearer to capture the real manifest.
 x-evidence:
   fetched: '2026-07-31'
   probes:
-  - {url: 'https://www.dispatchhealth.com/wp-json/mcp/mcp-oauth-server', method: POST,
-    jsonrpc_method: tools/list, http_status: 401}
-  - {url: 'https://www.dispatchhealth.com/wp-json/mcp/mcp-oauth-server', method: POST,
-    jsonrpc_method: initialize, http_status: 401}
-  - {url: 'https://www.dispatchhealth.com/wp-json/mcp/mcp-adapter-default-server', method: POST,
-    jsonrpc_method: tools/list, http_status: 401}
-  - {url: 'https://www.dispatchhealth.com/wp-json/wp-abilities/v1/abilities', method: GET,
-    http_status: 401}
-notes: 'Surface caveat, recorded so it is not overstated: these MCP endpoints are exposed
-  by the WordPress MCP adapter running on the dispatchhealth.com marketing site (WP
-  Engine hosted, namespaces include mcp, wp-abilities/v1, wp/v2). They are a real,
-  callable, first-party agent surface served from the provider''s own host — but they
-  front the website''s content/abilities, not DispatchHealth''s clinical or partner
+  - url: https://www.dispatchhealth.com/wp-json/mcp/mcp-oauth-server
+    method: POST
+    jsonrpc_method: tools/list
+    http_status: 401
+  - url: https://www.dispatchhealth.com/wp-json/mcp/mcp-oauth-server
+    method: POST
+    jsonrpc_method: initialize
+    http_status: 401
+  - url: https://www.dispatchhealth.com/wp-json/mcp/mcp-adapter-default-server
+    method: POST
+    jsonrpc_method: tools/list
+    http_status: 401
+  - url: https://www.dispatchhealth.com/wp-json/wp-abilities/v1/abilities
+    method: GET
+    http_status: 401
+notes: 'Surface caveat, recorded so it is not overstated: these MCP endpoints are exposed by the WordPress
+  MCP adapter running on the dispatchhealth.com marketing site (WP Engine hosted, namespaces include mcp,
+  wp-abilities/v1, wp/v2). They are a real, callable, first-party agent surface served from the provider''s
+  own host — but they front the website''s content/abilities, not DispatchHealth''s clinical or partner
   platform (CESIA / Dispatch Express), which publishes no public API.'
+deployment:
+  mode: remote
+  endpoint: https://www.dispatchhealth.com/wp-json/mcp/mcp-oauth-server
+  verified: probed
+  probe: gated
+  checked: '2026-08-12'
+  source: catalog MCP census
