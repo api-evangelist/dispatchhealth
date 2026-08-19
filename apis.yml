@@ -19,7 +19,7 @@ x-source: harvest:secondary-market
 x-tier: stub
 x-tier-reason: harvest
 image: https://www.dispatchhealth.com/wp-content/uploads/2025/07/dispatchhealth-logo.svg
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-07-31'
 modified: '2026-07-31'
 x-enrichment:
