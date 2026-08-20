@@ -54,6 +54,11 @@ apis:
   tags:
   - MCP
   - Agents
+  - Authentication
+  - Healthcare
+  tags_raw:
+  - MCP
+  - Agents
   - OAuth
   - Healthcare
   properties:
