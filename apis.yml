@@ -95,6 +95,9 @@ apis:
     url: scopes/dispatchhealth-scopes.yml
   - type: WellKnown
     url: well-known/dispatchhealth-well-known.yml
+  x-surface: platform-generated
+  x-platform: wordpress
+  x-platform-surface: mcp-plugin
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
