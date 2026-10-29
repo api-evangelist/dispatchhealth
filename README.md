@@ -64,21 +64,107 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-DispatchHealth delivers complex medical care in the home — same-day urgent care, hospital-alternative (hospital-at-home) care, and transitional/recovery care — across roughly 50 US metropolitan areas in partnership with nearly 40 health systems and national payers. Founded in 2013 in Denver, Colorado, it merged with Medically Home in June 2025. Its CESIA platform handles care planning, dispatching, routing, scheduling and real-time patient connectivity, and is designed to integrate with a partner health system's existing EMR.
+DispatchHealth is a Denver, Colorado-based provider of complex medical care in the home, founded in 2013 and merged with Medically Home in June 2025 to create one of the largest hospital-at-home platforms in the United States. The combined company delivers same-day urgent care, hospital-alternative (hospital-at-home) care, transitional and recovery care across roughly 50 metropolitan areas in partnership with nearly 40 health systems and national payers. Its CESIA technology platform handles rules-based and AI-assisted care planning, dispatching, routing, scheduling, care-team status, real-time two-way patient communications and field equipment tracking, and is designed to integrate with a partner health system's existing EMR rather than replace it. DispatchHealth partners access the platform through the Dispatch Express portal and patients through an online request flow; the company publishes no public developer portal, API documentation, or machine-readable API contract as of this profiling pass.
 
-- Website: https://www.dispatchhealth.com/
-- Technology (CESIA): https://www.dispatchhealth.com/technology/
-- Partners: https://www.dispatchhealth.com/partners/
-- Secondary market listing: https://forgeglobal.com/dispatchhealth_stock/
+**Areas:** Company · Healthcare · Health Systems · Hospital at Home · Home Care · Urgent Care · Care Delivery · Medical Services · Telehealth · Digital Health
 
-## API surface
+## DispatchHealth on APIs.io
 
-DispatchHealth publishes **no public developer portal, API documentation, or OpenAPI/GraphQL/AsyncAPI contract**. `api.dispatchhealth.com` answers HTTP 204 with an empty body to every anonymous path, and the partner (Dispatch Express) and patient (request) surfaces are interactive logins.
+Everything profiled for DispatchHealth is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/dispatchhealth/](https://apis.io/providers/dispatchhealth/)** — or go straight to one of the APIs or properties below.
 
-The one machine-readable surface found on their hosts is an **OAuth 2.1-protected MCP server** exposed by the WordPress MCP adapter on the marketing site:
+### APIs (1)
 
-- `https://www.dispatchhealth.com/.well-known/oauth-authorization-server` (RFC 8414)
-- `https://www.dispatchhealth.com/.well-known/oauth-protected-resource` (RFC 9728)
-- `https://www.dispatchhealth.com/wp-json/mcp/mcp-oauth-server` — `tools/list` returns 401 (auth-gated)
+- [DispatchHealth MCP Server](https://apis.io/apis/dispatchhealth/dispatchhealth-mcp-server/) — An OAuth 2.1-protected Model Context Protocol (MCP) server exposed on DispatchHealth's own host by the WordPress MCP adapter running on…
 
-No A2A agent card, no security.txt, no status page, no first-party SDKs (the 21 public GitHub repos are all forks). A Drata-hosted trust center exists at `trust.dispatchhealth.com` but is behind a Cloudflare bot challenge, so its certifications could not be enumerated.
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [dispatchhealth-mcp.yml](https://apis.io/servers/dispatchhealth/dispatchhealth-mcp-yml/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Dispatchhealth Authentication](https://apis.io/security/dispatchhealth/dispatchhealth-authentication/)
+- [Dispatchhealth Domain Security](https://apis.io/security/dispatchhealth/dispatchhealth-domain-security/)
+- [Dispatchhealth Trust Center](https://apis.io/security/dispatchhealth/dispatchhealth-trust-center/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Dispatchhealth Scopes](https://apis.io/scopes/dispatchhealth/dispatchhealth-scopes/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.dispatchhealth.com/)
+- [Pricing](https://www.dispatchhealth.com/cost-insurance-coverage/)
+- [Sign up](https://request.dispatchhealth.com/)
+- [Support](https://www.dispatchhealth.com/get-in-touch/)
+- [Blog](https://www.dispatchhealth.com/blog/)
+- [Compliance](https://trust.dispatchhealth.com/)
+- [Terms of service](https://www.dispatchhealth.com/terms-of-service/)
+- [Privacy policy](https://www.dispatchhealth.com/privacy-policy/)
+- [GitHub](https://github.com/DispatchHealth)
+
+## API Evangelist rating
+
+**Kin Score 28.4** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.8 |
+| Contract quality | 0.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 53.9 |
+
+**Agent readiness 16.5** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | platform (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 36.7** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/dispatchhealth/](https://apis.io/providers/dispatchhealth/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for DispatchHealth: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/dispatchhealth/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
